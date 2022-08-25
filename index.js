@@ -96,8 +96,8 @@ class Car {
   }
   drive (distance) {
     let gasNeeded = distance/this.milesPerGallon;
-    if (gasNeeded > tank) { 
-      this.odometer = this.odometer + (tank * this.milesPerGallon);
+    if (gasNeeded > this.tank) { 
+      this.odometer = this.odometer + (this.tank * this.milesPerGallon);
       this.tank = 0;
       return `I ran out of fuel at ${this.odometer} miles!`;
     }
@@ -105,6 +105,16 @@ class Car {
     this.tank = this.tank - gasNeeded;
     }
   }
+
+  const car1 = new Car ('Range Rover', 10);
+
+  // console.log(car1);
+  // car1.fill(5);
+  // console.log(car1);
+
+  // car1.drive(60);
+  // console.log(car1.drive(60));
+  // console.log(car1);
 
 
 /*
@@ -121,8 +131,26 @@ class Car {
 */
 
 class Lambdasian {
-  
+  constructor (attr) {
+    this.name = attr.name;
+    this.age = attr.age;
+    this.location = attr.location;
+  }
+  speak () {
+    return `Hello my name is ${this.name}, I am from ${this.location}`;
+  }
 }
+
+const Ted = new Lambdasian ({
+  name: "Teddy",
+  age: 26,
+  location: 'NYC'
+});
+
+// console.log(Ted);
+// console.log(Ted.speak());
+
+
 
 /*
   TASK 4
@@ -139,9 +167,49 @@ class Lambdasian {
         + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
 */
 
-class Instructor {
+class Instructor extends Lambdasian {
+  constructor (attr) {
+    super (attr);
+    this.speciality = attr.speciality;
+    this.favLanguage = attr.favLanguage;
+    this.catchPhrase = attr.catchPhrase;
+  }
+  demo (subject) {
+    return `Today we are learning about ${subject}`;
+  }
+  grade (student, subject) {
+    return `${student.name} receives a perfect score on ${subject}`;
+  }
 
 }
+
+// const mrSmith = new Instructor ({
+//   name: "Mr Smith",
+//   age: 42,
+//   location: 'Orlando',
+//   speciality: 'History',
+//   favLanguage: 'Mandarin',
+//   catchPhrase: 'Bazinga'
+// }
+// );
+
+// console.log(mrSmith);
+// console.log(mrSmith.demo('The War of 1812'));
+
+// class student {
+//   constructor (attr) {
+//     this.name = attr.name;
+//     this.age = attr.age;
+//   }
+// }
+
+// const Billy = new student ({
+//   name: "Billy",
+//   age: 14
+// });
+
+// console.log(mrSmith.grade(Billy, 'The Renaissance'));
+
 
 /*
   TASK 5
@@ -159,9 +227,40 @@ class Instructor {
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
 
-class Student {
+class Student extends Lambdasian{ 
+  constructor (attr) {
+    super (attr);
+    this.previousBackground = attr.previousBackground;
+    this.className = attr.className;
+    this.favSubjects = attr.favSubjects;
+  }
+  listSubjects () {
+    let favSubjectList = this.favSubjects.toString();
+    return favSubjectList;
+  }
+  PRAssignment (subject) {
+    return `${this.name} has submitted a PR for ${subject}`;
+  }
+  sprintChallenge (subject) {
+    return `${this.name} has begun sprint challenge on ${subject}`;
+  }
    
 }
+
+
+const Billy = new Student ( {
+  name: "Billy",
+  age: 14,
+  location: 'Oklahoma',
+  previousBackground: 'beginner',
+  className: 'Web Development',
+  favSubjects: ['HTML', 'CSS', 'JS']
+})
+
+// console.log(Billy.listSubjects());
+// console.log(Billy.PRAssignment('CSS'));
+// console.log(Billy.sprintChallenge('Backend Development'));
+
 
 /*
   TASK 6
@@ -173,13 +272,40 @@ class Student {
     - Its constructor calls the parent constructor passing to it what it needs.
     - The constructor should also initialize `gradClassName` and `favInstructor` properties on the instance.
     - ProjectManager instances have the following methods:
-        + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
+        + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standby times!`
         + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
 
-class ProjectManager {
+class ProjectManager extends Instructor {
+  constructor (attr) {
+    super (attr);
+    this.gradClassName = attr.gradClassName;
+    this.favInstructor = attr.favInstructor;
+  }
+  standUp (channel){
+    return `${this.name} announces to ${channel}, @channel standby times!`;
+  }
+  debugsCode (student, subject){
+    return `${this.name} debugs ${student.name}'s code on ${subject}`;
+  }
    
 }
+
+const Sara = new ProjectManager ( {
+  name: "Sara",
+  age: 35,
+  location: 'Austin',
+  speciality: 'Graphic Design',
+  favLanguage: 'Spanish',
+  catchPhrase: 'Alrighty',
+  gradClassName: 'CS1',
+  favInstructor: 'Sean'
+});
+
+// console.log(Sara);
+// console.log(Sara.standUp('community'));
+// console.log(Sara.debugsCode(Billy, 'UI/UX'));
+
 
 /*
   STRETCH PROBLEM (no tests!)
