@@ -170,7 +170,7 @@ const Ted = new Lambdasian ({
 class Instructor extends Lambdasian {
   constructor (attr) {
     super (attr);
-    this.speciality = attr.speciality;
+    this.specialty = attr.specialty;
     this.favLanguage = attr.favLanguage;
     this.catchPhrase = attr.catchPhrase;
   }
@@ -187,7 +187,7 @@ class Instructor extends Lambdasian {
 //   name: "Mr Smith",
 //   age: 42,
 //   location: 'Orlando',
-//   speciality: 'History',
+//   specialty: 'History',
 //   favLanguage: 'Mandarin',
 //   catchPhrase: 'Bazinga'
 // }
@@ -295,7 +295,7 @@ const Sara = new ProjectManager ( {
   name: "Sara",
   age: 35,
   location: 'Austin',
-  speciality: 'Graphic Design',
+  specialty: 'Graphic Design',
   favLanguage: 'Spanish',
   catchPhrase: 'Alrighty',
   gradClassName: 'CS1',
